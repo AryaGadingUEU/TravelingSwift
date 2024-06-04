@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Restaurant Apps</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Oswald:wght@200..700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <button onclick="location.href='#content-main'" class="skip-link">
+      Menuju ke konten
+    </button>
+    <header>
+      <div class="logo-container">
+        <img
+          src="/images/mainlogo.png"
+          alt="Main Logo"
+          class="logo"
+          tabindex="0"
+        />
+        <span class="logo-text" tabindex="0">TravelingSwift</span>
+      </div>
+      <div class="hamburger">
+        <button
+          class="hamburger-indicator"
+          aria-label="Navigasi Menu"
+          tabindex="0"
+        >
+          ☰
+        </button>
+      </div>
+      <nav class="navigation">
+        <a href="index.html" class="nav-link">Beranda</a>
+        <a href="planning.html" class="nav-link">Perencanaan</a>
+        <a href="recommendation.html" class="nav-link">Rekomendasi</a>
+        <a href="gallery.html" class="nav-link">Galeri</a>
+        <a href="aboutus.html" class="nav-link">Tentang</a>
+        <!-- Tambahkan lebih banyak link navigasi sesuai kebutuhan -->
+      </nav>
+      <div class="user-options">
+        <a href="#" class="profile">
+          <img
+            src="/images/ProfileIcon.png"
+            alt="Profile Logo"
+            class="user-logo"
+          />
+        </a>
+      </div>
+    </header>
+    <main>
+      <section class="home" id="home">
+        <div class="content">
+          <h3>Rencanakan Perjalanan Wisatamu</h3>
+          <p>Dari Sekarang!</p>
+          <a href="planning.html" class="btn">Mulai</a>
+        </div>
+
+        <div class="video-container">
+          <!-- <img src="images/homeimage.jpg" alt="" class="image"> -->
+          <video
+            src="images/homevideo.mp4"
+            id="video"
+            loop
+            autoplay
+            muted
+          ></video>
+        </div>
+      </section>
+      <section class="container">
+        <div class="nav-bar">
+          <button class="nav-button" data-month="semua">Semua</button>
+          <button class="nav-button" data-month="sebelum">Sebelum</button>
+          <button class="nav-button" data-month="saatini">Saat Ini</button>
+          <button class="nav-button active" data-month="sesudah">
+            Sesudah
+          </button>
+        </div>
+        <div class="chart-container">
+          <canvas id="expenseChart"></canvas>
+          <div class="total-amount" id="totalAmount">672.00</div>
+        </div>
+        <div class="expense-list" id="expenseList"></div>
+        <div class="chart-container">
+          <canvas id="barChart"></canvas>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <div class="text-footer" tabindex="0">
+        <p>Dari C624-PS046 dengan cinta &hearts;~</p>
+      </div>
+    </footer>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const chartData = {
+          semua: {
+            total: 620.0,
+            data: [250, 70, 60, 55, 45, 50, 90],
+            labels: [
+              "Bandung",
+              "Bali",
+              "Jogja",
+              "Surabaya",
+              "Malang",
+              "Sumatra Utara",
+              "Lainnya",
+            ],
+            colors: [
+              "#FFCE56",
+              "#36A2EB",
+              "#FF6384",
+              "#4BC0C0",
+              "#9966FF",
+              "#FF9F40",
+              "#C9CBCF",
+            ],
+          },
+          sebelum: {
+            total: 700.0,
+            data: [300, 90, 80, 70, 60, 50, 50],
+            labels: [
+              "Bandung",
+              "Bali",
+              "Jogja",
+              "Surabaya",
+              "Malang",
+              "Sumatra Utara",
+              "Lainnya",
+            ],
+            colors: [
+              "#FFCE56",
+              "#36A2EB",
+              "#FF6384",
+              "#4BC0C0",
+              "#9966FF",
+              "#FF9F40",
+              "#C9CBCF",
+            ],
+          },
+          saatini: {
+            total: 680.0,
+            data: [280, 75, 65, 60, 55, 45, 100],
+            labels: [
+              "Bandung",
+              "Bali",
+              "Jogja",
+              "Surabaya",
+              "Malang",
+              "Sumatra Utara",
+              "Lainnya",
+            ],
+            colors: [
+              "#FFCE56",
+              "#36A2EB",
+              "#FF6384",
+              "#4BC0C0",
+              "#9966FF",
+              "#FF9F40",
+              "#C9CBCF",
+            ],
+          },
+          sesudah: {
+            total: 672.0,
+            data: [300, 65, 62, 53, 50, 50, 192],
+            labels: [
+              "Bandung",
+              "Bali",
+              "Jogja",
+              "Surabaya",
+              "Malang",
+              "Sumatra Utara",
+              "Lainnya",
+            ],
+            colors: [
+              "#FFCE56",
+              "#36A2EB",
+              "#FF6384",
+              "#4BC0C0",
+              "#9966FF",
+              "#FF9F40",
+              "#C9CBCF",
+            ],
+          },
+        };
+
+        const ctx = document.getElementById("expenseChart").getContext("2d");
+        let expenseChart = new Chart(ctx, {
+          type: "doughnut",
+          data: {
+            labels: chartData.sesudah.labels,
+            datasets: [
+              {
+                data: chartData.sesudah.data,
+                backgroundColor: chartData.sesudah.colors,
+                hoverBackgroundColor: chartData.sesudah.colors,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                display: false,
+              },
+            },
+          },
+        });
+
+        const barCtx = document.getElementById("barChart").getContext("2d");
+        const barLabels = chartData.sesudah.labels;
+        const barData = {
+          labels: barLabels,
+          datasets: [
+            {
+              label: "Monthly Expenses",
+              data: chartData.sesudah.data,
+              backgroundColor: chartData.sesudah.colors.map((color) =>
+                color.replace(/0.2\)/, "0.6)")
+              ),
+              borderColor: chartData.sesudah.colors,
+              borderWidth: 1,
+            },
+          ],
+        };
+        let barChart = new Chart(barCtx, {
+          type: "bar",
+          data: barData,
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+              },
+            },
+          },
+        });
+
+        function updateCharts(month) {
+          const data = chartData[month];
+
+          // Update Donut Chart
+          expenseChart.data.labels = data.labels;
+          expenseChart.data.datasets[0].data = data.data;
+          expenseChart.data.datasets[0].backgroundColor = data.colors;
+          expenseChart.data.datasets[0].hoverBackgroundColor = data.colors;
+          expenseChart.update();
+
+          // Update Bar Chart
+          barChart.data.labels = data.labels;
+          barChart.data.datasets[0].data = data.data;
+          barChart.data.datasets[0].backgroundColor = data.colors.map((color) =>
+            color.replace(/0.2\)/, "0.6)")
+          );
+          barChart.data.datasets[0].borderColor = data.colors;
+          barChart.update();
+
+          // Update Total Amount
+          document.getElementById("totalAmount").innerText =
+            data.total.toFixed(2);
+
+          // Update Expense List
+          const expenseList = document.getElementById("expenseList");
+          expenseList.innerHTML = "";
+          data.labels.forEach((label, index) => {
+            const percent = ((data.data[index] / data.total) * 100).toFixed(2);
+            const amount = data.data[index].toFixed(2);
+            expenseList.innerHTML += `
+                  <div class="expense-item">
+                      <span class="expense-category">${label}</span>
+                      <span class="expense-percent">${percent}%</span>
+                      <span class="expense-amount">${amount}</span>
+                  </div>
+              `;
+          });
+        }
+
+        document.querySelectorAll(".nav-button").forEach((button) => {
+          button.addEventListener("click", function () {
+            document
+              .querySelectorAll(".nav-button")
+              .forEach((btn) => btn.classList.remove("active"));
+            this.classList.add("active");
+            updateCharts(this.dataset.month);
+          });
+        });
+
+        updateCharts("sesudah");
+      });
+    </script>
+  </body>
+</html>

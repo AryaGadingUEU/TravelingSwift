@@ -1,0 +1,208 @@
+$Oswald-Font: "Oswald";
+$Lato-Font: "Lato";
+$CCC-Color: #ccc;
+$Black-Wash: #0c0c0c;
+$Gold-Color: gold;
+$Sparkler-Color: #ffef96;
+$White-Color: #ffffff;
+$Black-Color: black;
+$Carbon-Fiber: #2d2d2d;
+$blue: #008bfc;
+$secondary: #48cae4;
+$box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+
+@mixin goldGlow {
+  @keyframes goldGlow {
+    0%,
+    100% {
+      color: $Gold-Color;
+    }
+    50% {
+      color: $Sparkler-Color;
+    }
+  }
+  animation: goldGlow 1s infinite;
+}
+
+@mixin touch-dimension {
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-block;
+  padding: 0.1px;
+}
+
+@mixin transition($property: all, $duration: 0.2s, $timing-function: linear) {
+  transition: $property $duration $timing-function;
+}
+
+@mixin box-shadow($shadow: $box-shadow) {
+  box-shadow: $shadow;
+}
+
+@mixin font-size($size) {
+  font-size: $size;
+}
+
+@mixin border-radius($radius) {
+  border-radius: $radius;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  scroll-padding-top: 4rem;
+
+  &::-webkit-scrollbar {
+    width: 1rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $blue;
+    @include border-radius(5rem);
+  }
+}
+
+.skip-link {
+  position: absolute;
+  top: -45px;
+  left: 0;
+  background-color: $Carbon-Fiber;
+  @include goldGlow;
+  @include touch-dimension;
+  padding: 8px;
+  z-index: 10000;
+
+  &:focus {
+    top: 0;
+  }
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #fff;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo-container .logo {
+  height: 40px;
+}
+
+.logo-text {
+  margin-left: 10px;
+  font-size: 20px;
+}
+
+.navigation .nav-link {
+  margin: 0 15px;
+  text-decoration: none;
+  color: $Black-Color;
+  font-weight: bold;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: #e7f5e9;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+  }
+}
+
+.user-logo {
+  height: 30px;
+}
+
+.hamburger,
+.drawer {
+  display: none;
+}
+
+body {
+  font-family: $Lato-Font;
+  background-color: $CCC-Color;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 1rem;
+  background: $blue;
+  color: $White-Color;
+  padding: 0.8rem 3rem;
+  border: 0.2rem solid $blue;
+
+  cursor: pointer;
+  text-decoration: none;
+
+  @include font-size(1.7rem);
+  @include border-radius(0.5rem);
+
+  &:hover {
+    color: $blue;
+    background: rgba(41, 165, 163, 0.2);
+  }
+}
+
+.home {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 0;
+  position: relative;
+}
+
+.home .content {
+  text-align: center;
+}
+
+.home .content h3 {
+  font-size: 4.5rem;
+  color: #fff;
+  text-transform: uppercase;
+  text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.2);
+}
+
+.home .content p {
+  font-size: 2.5rem;
+  color: #fff;
+  padding: 0.5rem 0;
+}
+
+.home .video-container video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+footer {
+  background-color: $secondary;
+  color: $White-Color;
+  padding: 20px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: $Oswald-Font;
+  position: relative;
+  bottom: 0;
+  z-index: 1000;
+  width: 97.37%;
+}
