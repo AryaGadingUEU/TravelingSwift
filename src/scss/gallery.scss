@@ -2,6 +2,8 @@
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .gallery .box-container .box {
@@ -9,7 +11,7 @@
   height: 28rem;
   overflow: hidden;
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
-  border: 1rem solid #fff;
+  border: 1rem solid #000;
   border-radius: 0.5rem;
 }
 

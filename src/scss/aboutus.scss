@@ -1,58 +1,29 @@
-.about .container {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 4rem;
-  margin-top: 5rem;
+.about .about-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  background-color: black;
 }
 
-.about .container .image-container {
-  flex: 1 1 42rem;
+.about-container {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+  padding: 20px;
 }
 
-.about .container .image-container .image {
-  border-radius: 1rem;
+.aboutus-column {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(255, 0, 0, 0.9);
+}
+
+.aboutus-column img {
   width: 100%;
+  height: auto;
+  border-radius: 5px;
 }
 
-.about .container .image-container .controls {
-  text-align: center;
-  padding: 2rem 0;
-}
-
-.about .container .image-container .controls span {
-  display: inline-block;
-  height: 2rem;
-  width: 2rem;
-  border-radius: 50%;
-  background: var(--blue);
-  cursor: pointer;
-  margin: 0.7rem;
-}
-
-.about .container .image-container .controls span:hover {
-  background: rgba(41, 165, 163, 0.2);
-}
-
-.about .container .content {
-  flex: 1 1 42rem;
-  margin-bottom: 8rem;
-}
-
-.about .container .content span {
-  color: var(--blue);
-  font-size: 2rem;
-}
-
-.about .container .content h3 {
-  color: #333;
-  font-size: 4rem;
-  margin-top: 0.5rem;
-}
-
-.about .container .content p {
-  font-size: 1.4rem;
-  padding: 1rem 0;
-  color: #666;
-  line-height: 2;
+.aboutus-column p {
+  line-height: 1.6;
 }

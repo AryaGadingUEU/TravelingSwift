@@ -13,7 +13,7 @@ h1 {
   font-weight: 700;
 }
 
-body {
+#logscreen-body {
   background-color: #c9d6ff;
   background: #e2e2e2;
   display: flex;
@@ -151,13 +151,11 @@ body {
   height: 100%;
   overflow: hidden;
   transition: all 0.6s ease-in-out;
-  border-radius: 150px 0 0 100px;
   z-index: 1000;
 }
 
 .container.active .toggle-container {
   transform: translateX(-100%);
-  border-radius: 0 150px 100px 0;
 }
 
 .toggle {
@@ -207,4 +205,51 @@ body {
 
 .container.active .toggle-right {
   transform: translateX(200%);
+}
+
+#logscreen-hover {
+  background-color: red; // garis background dasar
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+
+#logscreen-hover::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(#000000, #2cb67d, #000000);
+  animation: animasi 5s linear infinite;
+}
+
+@keyframes animasi {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+#logscreen-hover span {
+  position: relative;
+  display: block;
+  width: calc(6.25vw - 2px);
+  height: calc(6.25vw - 2px);
+  background: #181818;
+  z-index: 2;
+  transition: 1.5s;
+}
+
+#logscreen-hover span:hover {
+  background: #2cb67d;
+  transition: 0s;
 }

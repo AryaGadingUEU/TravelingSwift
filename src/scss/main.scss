@@ -101,7 +101,8 @@ header {
 }
 
 .logo-container .logo {
-  height: 40px;
+  width: 40px;
+  height: auto;
 }
 
 .logo-text {
@@ -124,7 +125,52 @@ header {
 }
 
 .user-logo {
-  height: 30px;
+  width: 30px;
+  height: auto;
+}
+
+.user-options {
+  position: relative; /* tambahkan ini untuk membuat posisi relatif */
+}
+
+.user-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #87ceeb;
+  padding: 12px 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 10000;
+}
+
+.user-dropdown span {
+  color: #ffffff; /* warna font putih */
+  text-decoration: none; /* hapus underline pada link */
+}
+
+.profile:hover + .user-dropdown,
+.user-dropdown:hover {
+  display: block; /* tampilkan dropdown ketika mouse dihover ke elemen profile */
+}
+
+#logout-button {
+  background-color: #87ceeb;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+  padding: 6px 16px;
+  margin-top: 14px;
+  border-radius: 5px;
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+}
+
+#logout-button:hover {
+  background-color: #ffffff;
+  color: #87ceeb;
+  transition: all ease-in-out 0.3s;
 }
 
 .hamburger,
@@ -204,5 +250,28 @@ footer {
   position: relative;
   bottom: 0;
   z-index: 1000;
-  width: 97.37%;
+  width: 100%;
+}
+
+@media screen and (min-width: 590px) and (max-width: 730px) {
+  .navigation .nav-link {
+    font-size: 15px;
+    margin: 0;
+  }
+
+  .logo-text {
+    margin-left: 0;
+    font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 590px) {
+  .navigation .nav-link {
+    font-size: 12px;
+    margin: 0;
+  }
+
+  .logo-text {
+    display: none;
+  }
 }

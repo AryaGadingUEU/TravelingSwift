@@ -64,14 +64,6 @@ export default {
       filename: "gallery.html",
     }),
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, "./src/templates/profile.html"),
-      filename: "profile.html",
-    }),
-    new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, "./src/templates/planning/before.html"),
-      filename: "before.html",
-    }),
-    new HtmlWebpackPlugin({
       template: path.resolve(
         __dirname,
         "./src/templates/planning/before-list/before1.html"
@@ -102,13 +94,6 @@ export default {
     new HtmlWebpackPlugin({
       template: path.resolve(
         __dirname,
-        "./src/templates/planning/current.html"
-      ),
-      filename: "current.html",
-    }),
-    new HtmlWebpackPlugin({
-      template: path.resolve(
-        __dirname,
         "./src/templates/planning/current-list/current1.html"
       ),
       filename: "current1.html",
@@ -133,10 +118,6 @@ export default {
         "./src/templates/planning/current-list/current4.html"
       ),
       filename: "current4.html",
-    }),
-    new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, "./src/templates/planning/after.html"),
-      filename: "after.html",
     }),
     new HtmlWebpackPlugin({
       template: path.resolve(
@@ -165,6 +146,136 @@ export default {
         "./src/templates/planning/after-list/after4.html"
       ),
       filename: "after4.html",
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, "./src/templates/db-plan.html"),
+      filename: "db-plan.html",
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(
+        __dirname,
+        "./src/templates/database/before-list/db-before1.html"
+      ),
+      filename: "db-before1.html",
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(
+        __dirname,
+        "./src/templates/database/before-list/db-before2.html"
+      ),
+      filename: "db-before2.html",
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(
+        __dirname,
+        "./src/templates/database/before-list/db-before3.html"
+      ),
+      filename: "db-before3.html",
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(
+        __dirname,
+        "./src/templates/database/before-list/db-before4.html"
+      ),
+      filename: "db-before4.html",
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(
+        __dirname,
+        "./src/templates/database/current-list/db-current1.html"
+      ),
+      filename: "db-current1.html",
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(
+        __dirname,
+        "./src/templates/database/current-list/db-current2.html"
+      ),
+      filename: "db-current2.html",
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(
+        __dirname,
+        "./src/templates/database/current-list/db-current3.html"
+      ),
+      filename: "db-current3.html",
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(
+        __dirname,
+        "./src/templates/database/current-list/db-current4.html"
+      ),
+      filename: "db-current4.html",
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(
+        __dirname,
+        "./src/templates/database/after-list/db-after1.html"
+      ),
+      filename: "db-after1.html",
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(
+        __dirname,
+        "./src/templates/database/after-list/db-after2.html"
+      ),
+      filename: "db-after2.html",
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(
+        __dirname,
+        "./src/templates/database/after-list/db-after3.html"
+      ),
+      filename: "db-after3.html",
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(
+        __dirname,
+        "./src/templates/database/after-list/db-after4.html"
+      ),
+      filename: "db-after4.html",
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(
+        __dirname,
+        "./src/templates/recommend/rekomendbali.html"
+      ),
+      filename: "rekomendbali.html",
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(
+        __dirname,
+        "./src/templates/recommend/rekomendbromo.html"
+      ),
+      filename: "rekomendbromo.html",
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(
+        __dirname,
+        "./src/templates/recommend/rekomendborobudur.html"
+      ),
+      filename: "rekomendborobudur.html",
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(
+        __dirname,
+        "./src/templates/recommend/rekomendtmii.html"
+      ),
+      filename: "rekomendtmii.html",
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(
+        __dirname,
+        "./src/templates/recommend/rekomendmuseum.html"
+      ),
+      filename: "rekomendmuseum.html",
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(
+        __dirname,
+        "./src/templates/recommend/rekomenddanau.html"
+      ),
+      filename: "rekomenddanau.html",
     }),
     new HtmlWebpackPlugin({
       template: path.resolve(

@@ -1,15 +1,20 @@
 // SCSS Imports
 import "../scss/main.scss";
 import "../scss/planning.scss";
+import "../scss/planning/before.scss";
 import "../scss/recommendation.scss";
 import "../scss/aboutus.scss";
 import "../scss/gallery.scss";
 import "../scss/profile.scss";
 import "../scss/chart.scss";
+import "../scss/db-plan.scss";
+import "../scss/recommend/destination.scss";
+import "../scss/account_log_screen/logscreen.scss";
 
 // JS Imports
 import "./account_log_screen/logscreen.js";
-import "./chart.js";
+import "./planning.js";
+import "./firebase/firebase_auth.js";
 
 // Navbar Toggle
 let navbar = document.querySelector(".header .navbar");
@@ -26,7 +31,6 @@ window.onscroll = () => {
   navbar.classList.remove("active");
 };
 
-// About Section Image Change
 document.querySelectorAll(".about .controls .control-btn").forEach((btn) => {
   btn.onclick = () => {
     let src = btn.getAttribute("data-src");
@@ -34,7 +38,6 @@ document.querySelectorAll(".about .controls .control-btn").forEach((btn) => {
   };
 });
 
-// Slide Show
 let slides = document.querySelectorAll(".book .slide");
 let index = 0;
 

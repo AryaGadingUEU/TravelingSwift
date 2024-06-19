@@ -1,92 +1,22 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"/><title>Restaurant Apps</title><meta name="viewport" content="width=device-width,initial-scale=1"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/><link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Oswald:wght@200..700&display=swap" rel="stylesheet"/><script src="https://cdn.jsdelivr.net/npm/chart.js"></script><script defer="defer" src="/bundle.js"></script></head><body><button onclick="location.href='#content-main'" class="skip-link">Menuju ke konten</button><header><div class="logo-container"><img src="/images/mainlogo.png" alt="Main Logo" class="logo" tabindex="0"/> <span class="logo-text" tabindex="0">TravelingSwift</span></div><div class="hamburger"><button class="hamburger-indicator" aria-label="Navigasi Menu" tabindex="0">☰</button></div><nav class="navigation"><a href="index.html" class="nav-link">Beranda</a> <a href="planning.html" class="nav-link">Perencanaan</a> <a href="recommendation.html" class="nav-link">Rekomendasi</a> <a href="gallery.html" class="nav-link">Galeri</a> <a href="aboutus.html" class="nav-link">Tentang</a></nav><div class="user-options"><a href="#" class="profile"><img src="/images/ProfileIcon.png" alt="Profile Logo" class="user-logo"/></a></div></header><main><section class="home" id="home"><div class="content"><h3>Rencanakan Perjalanan Wisatamu</h3><p>Dari Sekarang!</p><a href="planning.html" class="btn">Mulai</a></div><div class="video-container"><video src="images/homevideo.mp4" id="video" loop autoplay muted></video></div></section><section class="container"><div class="nav-bar"><button class="nav-button" data-month="semua">Semua</button> <button class="nav-button" data-month="sebelum">Sebelum</button> <button class="nav-button" data-month="saatini">Saat Ini</button> <button class="nav-button active" data-month="sesudah">Sesudah</button></div><div class="chart-container"><canvas id="expenseChart"></canvas><div class="total-amount" id="totalAmount">672.00</div></div><div class="expense-list" id="expenseList"></div><div class="chart-container"><canvas id="barChart"></canvas></div></section></main><footer><div class="text-footer" tabindex="0"><p>Dari C624-PS046 dengan cinta &hearts;~</p></div></footer><script>document.addEventListener("DOMContentLoaded", function () {
+<!doctype html><html lang="en"><head><meta charset="UTF-8"/><title>TravelingSwift</title><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="dicoding:email" content="aryagading2004@student.esaunggul.ac.id"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/><link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Oswald:wght@200..700&display=swap" rel="stylesheet"/><script src="https://cdn.jsdelivr.net/npm/chart.js"></script><script defer="defer" src="/bundle.js"></script></head><body><button onclick="location.href='#content-main'" class="skip-link">Menuju ke konten</button><header><div class="logo-container"><img src="/images/mainlogo.png" alt="Main Logo" class="logo" tabindex="0"/> <span class="logo-text" tabindex="0">TravelingSwift</span></div><div class="hamburger"><button class="hamburger-indicator" aria-label="Navigasi Menu" tabindex="0">☰</button></div><nav class="navigation"><a href="index.html" class="nav-link">Beranda</a> <a href="planning.html" class="nav-link">Perencanaan</a> <a href="recommendation.html" class="nav-link">Rekomendasi</a> <a href="gallery.html" class="nav-link">Galeri</a> <a href="aboutus.html" class="nav-link">Tentang</a></nav><div class="user-options"><a class="profile"><img src="/images/ProfileIcon.png" alt="Profile Logo" class="user-logo"/></a><div class="user-dropdown"></div></div></header><main><section class="home" id="home"><div class="content"><h3>Rencanakan Perjalanan Wisatamu</h3><p>Dari Sekarang!</p><a href="planning.html" class="btn">Mulai</a></div><div class="video-container"><video src="images/homevideo.mp4" id="video" loop autoplay muted></video></div></section><section class="chart-container"><div class="nav-bar"><button class="nav-button" data-month="semua">Semua</button> <button class="nav-button" data-month="sebelum">Sebelum</button> <button class="nav-button" data-month="saatini">Saat Ini</button> <button class="nav-button active" data-month="sesudah">Sesudah</button></div><div class="chart-container"><canvas id="expenseChart"></canvas><div class="total-amount" id="totalAmount">672.00</div></div><div class="expense-list" id="expenseList"></div><div class="chart-container"><canvas id="barChart"></canvas></div></section></main><footer><div class="text-footer" tabindex="0"><p>Dari C624-PS046 dengan cinta &hearts;~</p></div></footer><script>document.addEventListener("DOMContentLoaded", function () {
         const chartData = {
-          semua: {
-            total: 620.0,
-            data: [250, 70, 60, 55, 45, 50, 90],
-            labels: [
-              "Bandung",
-              "Bali",
-              "Jogja",
-              "Surabaya",
-              "Malang",
-              "Sumatra Utara",
-              "Lainnya",
-            ],
-            colors: [
-              "#FFCE56",
-              "#36A2EB",
-              "#FF6384",
-              "#4BC0C0",
-              "#9966FF",
-              "#FF9F40",
-              "#C9CBCF",
-            ],
-          },
           sebelum: {
-            total: 700.0,
-            data: [300, 90, 80, 70, 60, 50, 50],
-            labels: [
-              "Bandung",
-              "Bali",
-              "Jogja",
-              "Surabaya",
-              "Malang",
-              "Sumatra Utara",
-              "Lainnya",
-            ],
-            colors: [
-              "#FFCE56",
-              "#36A2EB",
-              "#FF6384",
-              "#4BC0C0",
-              "#9966FF",
-              "#FF9F40",
-              "#C9CBCF",
-            ],
+            total: 3.0,
+            data: [1, 1, 1],
+            labels: ["Delay", "Postponed", "Ongoing"],
+            colors: ["#FF0000", "#0000FF", "#008000"],
           },
           saatini: {
-            total: 680.0,
-            data: [280, 75, 65, 60, 55, 45, 100],
-            labels: [
-              "Bandung",
-              "Bali",
-              "Jogja",
-              "Surabaya",
-              "Malang",
-              "Sumatra Utara",
-              "Lainnya",
-            ],
-            colors: [
-              "#FFCE56",
-              "#36A2EB",
-              "#FF6384",
-              "#4BC0C0",
-              "#9966FF",
-              "#FF9F40",
-              "#C9CBCF",
-            ],
+            total: 3.0,
+            data: [1, 1, 1],
+            labels: ["Delay", "Postponed", "Ongoing"],
+            colors: ["#FF0000", "#0000FF", "#008000"],
           },
           sesudah: {
-            total: 672.0,
-            data: [300, 65, 62, 53, 50, 50, 192],
-            labels: [
-              "Bandung",
-              "Bali",
-              "Jogja",
-              "Surabaya",
-              "Malang",
-              "Sumatra Utara",
-              "Lainnya",
-            ],
-            colors: [
-              "#FFCE56",
-              "#36A2EB",
-              "#FF6384",
-              "#4BC0C0",
-              "#9966FF",
-              "#FF9F40",
-              "#C9CBCF",
-            ],
+            total: 3.0,
+            data: [1, 1, 1],
+            labels: ["Delay", "Postponed", "Ongoing"],
+            colors: ["#FF0000", "#0000FF", "#008000"],
           },
         };
 
@@ -192,4 +122,68 @@
         });
 
         updateCharts("sesudah");
+      });</script><script type="module">import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+      import {
+        getAuth,
+        signOut,
+      } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+      import {
+        getDatabase,
+        get,
+        ref,
+      } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyDYX8vwQvyV6w3qXGkH98rDVC6OtYGfKlA",
+        authDomain: "travelingswift-2d5c2.firebaseapp.com",
+        projectId: "travelingswift-2d5c2",
+        storageBucket: "travelingswift-2d5c2.appspot.com",
+        messagingSenderId: "1085644116670",
+        appId: "1:1085644116670:web:f3d155410a101d4f4ec4ef",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+      const accountDetails = document.querySelector(".user-dropdown");
+
+      const db = getDatabase();
+
+      // Authentication Track
+      const setupUI = (user) => {
+        if (user) {
+          const userId = user.uid;
+          const userRef = ref(db, `users/${userId}/account_info`);
+
+          get(userRef).then((snapshot) => {
+            if (snapshot.exists()) {
+              const userName = snapshot.val().name;
+              const html = `
+              <span class="user_name">${userName}</span>
+              <span class="user_email">${user.email}</span>
+              <button id="logout-button" value="ok">Keluar</button>
+              `;
+              accountDetails.innerHTML = html;
+
+              let logoutButton = document.getElementById("logout-button");
+              logoutButton.addEventListener("click", (e) => {
+                e.preventDefault();
+                signOut(auth)
+                  .then(() => {
+                    alert("User sukses logout");
+                    location.href = "logscreen.html";
+                  })
+                  .catch((error) => {});
+              });
+            }
+          });
+        } else {
+        }
+      };
+
+      auth.onAuthStateChanged((user) => {
+        if (user) {
+          setupUI(user);
+        } else {
+          window.location = "logscreen.html";
+        }
       });</script></body></html>

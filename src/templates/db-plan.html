@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>TravelingSwift</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="dicoding:email"
+      content="aryagading2004@student.esaunggul.ac.id"
+    />
+    <meta
+      name="dicoding:email"
+      content="aryagading2004@student.esaunggul.ac.id"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Oswald:wght@200..700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <button onclick="location.href='#content-main'" class="skip-link">
+      Menuju ke konten
+    </button>
+    <header>
+      <div class="logo-container">
+        <img
+          src="/images/mainlogo.png"
+          alt="Main Logo"
+          class="logo"
+          tabindex="0"
+        />
+        <span class="logo-text" tabindex="0">TravelingSwift</span>
+      </div>
+      <div class="hamburger">
+        <button
+          class="hamburger-indicator"
+          aria-label="Navigasi Menu"
+          tabindex="0"
+        >
+          ☰
+        </button>
+      </div>
+      <nav class="navigation">
+        <a href="index.html" class="nav-link">Beranda</a>
+        <a href="planning.html" class="nav-link">Perencanaan</a>
+        <a href="recommendation.html" class="nav-link">Rekomendasi</a>
+        <a href="gallery.html" class="nav-link">Galeri</a>
+        <a href="aboutus.html" class="nav-link">Tentang</a>
+      </nav>
+      <div class="user-options">
+        <a class="profile">
+          <img
+            src="/images/ProfileIcon.png"
+            alt="Profile Logo"
+            class="user-logo"
+          />
+        </a>
+        <div class="user-dropdown"></div>
+      </div>
+    </header>
+    <main>
+      <div class="content-planning">
+        <div class="sidebar">
+          <a href="before1.html">Sebelum</a>
+          <a href="current1.html">Saat Ini</a>
+          <a href="after1.html">Sesudah</a>
+          <a href="db-plan.html" class="active-tab">Database</a>
+        </div>
+        <div class="database-content">
+          <div class="database-container">
+            <div
+              class="database-item"
+              onclick="location.href='db-before1.html'"
+            >
+              Sebelum Perjalanan Wisata
+            </div>
+            <div
+              class="database-item"
+              onclick="location.href='db-current1.html'"
+            >
+              Saat Perjalanan Wisata
+            </div>
+            <div class="database-item" onclick="location.href='db-after1.html'">
+              Sesudah Perjalanan Wisata
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <div class="text-footer" tabindex="0">
+        <p>Dari C624-PS046 dengan cinta &hearts;~</p>
+      </div>
+    </footer>
+
+    <!-- Script Logout -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+      import {
+        getAuth,
+        signOut,
+      } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+      import {
+        getDatabase,
+        get,
+        ref,
+      } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyDYX8vwQvyV6w3qXGkH98rDVC6OtYGfKlA",
+        authDomain: "travelingswift-2d5c2.firebaseapp.com",
+        projectId: "travelingswift-2d5c2",
+        storageBucket: "travelingswift-2d5c2.appspot.com",
+        messagingSenderId: "1085644116670",
+        appId: "1:1085644116670:web:f3d155410a101d4f4ec4ef",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+      const accountDetails = document.querySelector(".user-dropdown");
+
+      const db = getDatabase();
+
+      // Authentication Track
+      const setupUI = (user) => {
+        if (user) {
+          const userId = user.uid;
+          const userRef = ref(db, `users/${userId}/account_info`);
+
+          get(userRef).then((snapshot) => {
+            if (snapshot.exists()) {
+              const userName = snapshot.val().name;
+              const html = `
+              <span class="user_name">${userName}</span>
+              <span class="user_email">${user.email}</span>
+              <button id="logout-button" value="ok">Keluar</button>
+              `;
+              accountDetails.innerHTML = html;
+
+              let logoutButton = document.getElementById("logout-button");
+              logoutButton.addEventListener("click", (e) => {
+                e.preventDefault();
+                signOut(auth)
+                  .then(() => {
+                    alert("User sukses logout");
+                    location.href = "logscreen.html";
+                  })
+                  .catch((error) => {});
+              });
+            }
+          });
+        } else {
+        }
+      };
+
+      auth.onAuthStateChanged((user) => {
+        if (user) {
+          setupUI(user);
+        } else {
+          window.location = "logscreen.html";
+        }
+      });
+    </script>
+  </body>
+</html>

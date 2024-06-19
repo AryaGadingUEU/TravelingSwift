@@ -1,0 +1,179 @@
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #f2e8e4;
+  margin: 0;
+  padding: 0;
+}
+
+#recommendationDetail {
+  width: 90%;
+  max-width: 1200px;
+  margin: 20px auto;
+  background-color: #f9f4ef;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.pembungkussatu {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.image1 img {
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+}
+
+.image3,
+.image4 {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+}
+
+.image3 img,
+.image4 img {
+  width: 350px;
+  height: 200px;
+  padding: 2px;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+}
+
+.image3 {
+  position: relative;
+  padding: 10px;
+}
+
+.image1 img {
+  width: 400px;
+  height: 430px;
+}
+
+.recommendation-deskripsi {
+  max-width: 1200px;
+  border-style: solid;
+  border-width: 5px;
+  border-color: gold;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.recommendation-deskripsi .judul {
+  font-size: 30px;
+  font-weight: bolder;
+}
+
+.recommendation-deskripsi .tempat,
+.recommendation-deskripsi .alamat {
+  margin-top: 5px;
+  font-size: 20px;
+  font-weight: normal;
+}
+
+.recommendation-deskripsi .rating {
+  font-weight: bold;
+  margin-top: 15px;
+  font-size: 20px;
+}
+
+.recommendation-deskripsi .ratingnumber {
+  font-weight: bold;
+  color: gold;
+}
+
+.recommendation-deskripsi .deskripsi {
+  margin-bottom: 20px;
+}
+
+.btnrecomend {
+  padding: 0.8em 0.3em;
+  margin-top: 0.1em;
+  background-color: #11a1da;
+  color: #ffffff;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.8em;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  text-decoration: 0;
+  position: relative;
+  top: 7px;
+}
+
+.btnrecomend:hover {
+  outline: none;
+  background-color: #11a1da;
+  opacity: 0.3;
+}
+
+@media screen and (max-width: 1044px) {
+  .image3 img,
+  .image4 img {
+    height: 170px;
+  }
+}
+
+@media screen and (min-width: 960px) and (max-width: 1240px) {
+  .image1 img {
+    width: 100%;
+  }
+
+  .image3 img,
+  .image4 img {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .pembungkussatu {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .image1 img {
+    width: 100%;
+    height: auto;
+  }
+
+  .image3,
+  .image4 {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .image3 img,
+  .image4 img {
+    width: 100%;
+    height: auto;
+  }
+
+  .recommendation-deskripsi .judul {
+    font-size: 24px;
+  }
+
+  .recommendation-deskripsi .tempat,
+  .recommendation-deskripsi .alamat,
+  .recommendation-deskripsi .rating {
+    font-size: 18px;
+  }
+
+  .btnrecomend {
+    margin: 10px 0;
+    font-size: 1em;
+    width: 100%;
+    text-align: center;
+    position: relative;
+  }
+}

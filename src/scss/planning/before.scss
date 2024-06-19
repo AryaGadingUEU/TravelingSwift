@@ -1,0 +1,327 @@
+* {
+  margin: 0;
+}
+
+::selection {
+  color: #fff;
+  background: #d43f8d;
+}
+
+.card-container {
+  position: relative;
+  width: 70%;
+  left: 12%;
+  background: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 50px 35px 10px 35px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.card-container .form-outer {
+  width: 100%;
+  margin-top: -10px;
+  border-bottom: 2px solid black; /* Creates a black border at the bottom */
+  margin-bottom: 20px; /* Adds space below each form-outer */
+  overflow: hidden;
+}
+
+.card-container .form-outer form {
+  display: flex;
+  width: 400%;
+}
+
+.form-outer form .page {
+  width: 25%;
+  transition: margin-left 0.3s ease-in-out;
+}
+
+.form-outer form .page .title {
+  text-align: left;
+  font-size: 25px;
+  font-weight: 500;
+}
+
+.form-outer form .page .field {
+  height: 45px;
+  margin: 45px 0;
+  display: flex;
+  position: relative;
+}
+
+form .page .field .label {
+  position: absolute;
+  top: -30px;
+  font-weight: 500;
+}
+
+form .page .field input {
+  height: 100%;
+  width: 100%;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  padding-left: 15px;
+  font-size: 18px;
+}
+
+form .page .field select {
+  width: 100%;
+  padding-left: 10px;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+form .page .field button {
+  width: 100%;
+  height: calc(100% + 5px);
+  border: none;
+  background: #d33f8d;
+  margin-top: -20px;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: 0.5s ease;
+}
+
+form .page .field button:hover {
+  background: #000;
+}
+
+form .page .btns button {
+  margin-top: -20px !important;
+}
+
+form .page .btns button.prev {
+  margin-right: 3px;
+  font-size: 17px;
+}
+
+form .page .btns button.next {
+  margin-left: 3px;
+}
+
+.card-container .progress-bar {
+  display: flex;
+  margin: 40px 0;
+  user-select: none;
+}
+
+.card-container .progress-bar .step {
+  text-align: center;
+  width: 100%;
+  position: relative;
+}
+
+.card-container .progress-bar .step p {
+  font-weight: 400;
+  font-size: 1rem;
+  color: #000;
+  margin-bottom: 8px;
+}
+
+.progress-bar .step .bullet {
+  height: 25px;
+  width: 25px;
+  border: 2px solid #000;
+  display: inline-block;
+  border-radius: 50%;
+  position: relative;
+  transition: 0.2s;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 25px;
+  cursor: pointer;
+}
+
+.progress-bar .step .bullet:hover {
+  background-color: #d33f8d;
+}
+
+.progress-bar .step .bullet.active {
+  border: 2px solid #d43f8d;
+}
+
+.card-container .progress-bar #active-step p {
+  color: #d33f8d;
+  font-weight: bold;
+}
+
+.progress-bar .step .bullet button {
+  left: 50%;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.progress-bar .step .bullet.active:after {
+  background: #d43f8d;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: animate 0.3s linear forwards;
+}
+
+@keyframes animate {
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+.progress-bar .step:last-child .bullet:before,
+.progress-bar .step:last-child .bullet:after {
+  display: none;
+}
+
+.progress-bar .step p.active {
+  color: #d43f8d;
+  transition: 0.2s linear;
+}
+
+.progress-bar .step .check {
+  position: absolute;
+  left: 50%;
+  top: 70%;
+  font-size: 15px;
+  transform: translate(-50%, -50%);
+  display: none;
+}
+
+.progress-bar .step .check.active {
+  display: block;
+  color: #fff;
+}
+
+.description {
+  height: 100px;
+  margin: 45px 0;
+  display: flex;
+  position: relative;
+}
+
+.label-description {
+  position: absolute;
+  top: -30px;
+  font-weight: 500;
+}
+
+.text-description {
+  width: 100%;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+}
+
+.radio-check {
+  font-size: 1rem;
+  font-weight: 400;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row;
+}
+
+.radio-check-label {
+  align-items: flex-start;
+  font-weight: 500;
+  display: flex;
+  margin-bottom: 10px;
+  margin-top: -30px;
+}
+
+.radio-btn .field {
+  padding: 14px;
+  margin-top: 45px;
+  display: flex;
+  align-items: center;
+}
+
+input[type="radio"] {
+  margin-right: 10px;
+}
+
+input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  font-size: 18px;
+}
+
+#currency {
+  width: 70px;
+  padding: 10px;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  font-size: 18px;
+}
+
+#harga-per-item,
+#harga-seluruhnya {
+  width: 200px;
+}
+
+#harga-total,
+#harga-seluruhnya-text,
+#before1_id,
+#before2_id,
+#before3_id,
+#before4_id,
+#current1_id,
+#current2_id,
+#current3_id,
+#current4_id,
+#after1_id,
+#after2_id,
+#after3_id,
+#after4_id {
+  background-color: #f0f0f0;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 18px;
+  cursor: not-allowed;
+}
+
+.input-btn {
+  flex-direction: row;
+  display: flex;
+}
+
+.button-submit {
+  padding: 12px;
+  width: 100%;
+  background-color: #48cae4;
+  font-weight: 500;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  color: #ffffff;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.button-delete {
+  padding: 12px;
+  width: 100%;
+  background-color: red;
+  font-weight: 500;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.button-submit:hover {
+  background-color: #87ceeb;
+  color: #ffffff;
+  transition: ease-in-out 0.3s;
+}
+
+.button-delete:hover {
+  background-color: #ff474c;
+  color: #ffffff;
+  transition: ease-in-out 0.3s;
+}

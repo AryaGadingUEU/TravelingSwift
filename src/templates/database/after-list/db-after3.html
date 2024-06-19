@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>TravelingSwift</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="dicoding:email"
+      content="aryagading2004@student.esaunggul.ac.id"
+    />
+    <meta
+      name="dicoding:email"
+      content="aryagading2004@student.esaunggul.ac.id"
+    />
+    <meta name="dicoding:email" content="f2046yb019@dicoding.org" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Oswald:wght@200..700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <button onclick="location.href='#content-main'" class="skip-link">
+      Menuju ke konten
+    </button>
+    <header>
+      <div class="logo-container">
+        <img
+          src="/images/mainlogo.png"
+          alt="Main Logo"
+          class="logo"
+          tabindex="0"
+        />
+        <span class="logo-text" tabindex="0">TravelingSwift</span>
+      </div>
+      <div class="hamburger">
+        <button
+          class="hamburger-indicator"
+          aria-label="Navigasi Menu"
+          tabindex="0"
+        >
+          ☰
+        </button>
+      </div>
+      <nav class="navigation">
+        <a href="index.html" class="nav-link">Beranda</a>
+        <a href="planning.html" class="nav-link">Perencanaan</a>
+        <a href="recommendation.html" class="nav-link">Rekomendasi</a>
+        <a href="gallery.html" class="nav-link">Galeri</a>
+        <a href="aboutus.html" class="nav-link">Tentang</a>
+      </nav>
+      <div class="user-options">
+        <a class="profile">
+          <img
+            src="/images/ProfileIcon.png"
+            alt="Profile Logo"
+            class="user-logo"
+          />
+        </a>
+        <div class="user-dropdown"></div>
+      </div>
+    </header>
+    <main>
+      <div class="content-planning">
+        <div class="sidebar">
+          <a href="db-plan.html">Kembali</a>
+          <a href="db-after1.html">1 - Makanan</a>
+          <a href="db-after2.html">2 - Kesehatan</a>
+          <a href="db-after3.html" class="active-tab">3 - Transport</a>
+          <a href="db-after4.html">4 - Bebas</a>
+        </div>
+
+        <div class="card-container">
+          <div class="form-outer">
+            <button class="button-submit" id="after3_dbUpdate">
+              Update Database?
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <div class="text-footer" tabindex="0">
+        <p>Dari C624-PS046 dengan cinta &hearts;~</p>
+      </div>
+    </footer>
+
+    <!-- Script Logout -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+      import {
+        getAuth,
+        signOut,
+      } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+      import {
+        getDatabase,
+        get,
+        ref,
+        onValue,
+        update,
+        remove,
+      } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyDYX8vwQvyV6w3qXGkH98rDVC6OtYGfKlA",
+        authDomain: "travelingswift-2d5c2.firebaseapp.com",
+        projectId: "travelingswift-2d5c2",
+        storageBucket: "travelingswift-2d5c2.appspot.com",
+        messagingSenderId: "1085644116670",
+        appId: "1:1085644116670:web:f3d155410a101d4f4ec4ef",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+      const accountDetails = document.querySelector(".user-dropdown");
+
+      const db = getDatabase();
+
+      // Authentication Track
+      const setupUI = (user) => {
+        if (user) {
+          const userId = user.uid;
+          const userRef = ref(db, `users/${userId}/account_info`);
+
+          get(userRef).then((snapshot) => {
+            if (snapshot.exists()) {
+              const userName = snapshot.val().name;
+              const html = `
+              <span class="user_name">${userName}</span>
+              <span class="user_email">${user.email}</span>
+              <button id="logout-button" value="ok">Keluar</button>
+              `;
+              accountDetails.innerHTML = html;
+
+              let logoutButton = document.getElementById("logout-button");
+              logoutButton.addEventListener("click", (e) => {
+                e.preventDefault();
+                signOut(auth)
+                  .then(() => {
+                    alert("User sukses logout");
+                    location.href = "logscreen.html";
+                  })
+                  .catch((error) => {});
+              });
+            }
+          });
+        } else {
+        }
+      };
+
+      auth.onAuthStateChanged((user) => {
+        if (user) {
+          setupUI(user);
+        } else {
+          window.location = "logscreen.html";
+        }
+      });
+
+      // Update Database
+      document
+        .getElementById("after3_dbUpdate")
+        .addEventListener("click", function () {
+          const user = auth.currentUser;
+          if (user) {
+            const dbRef = ref(db, `users/${user.uid}/planningDB/after_3`);
+            onValue(
+              dbRef,
+              (snapshot) => {
+                const data = snapshot.val();
+                const container = document.querySelector(".card-container");
+                container.innerHTML = "";
+                for (const id in data) {
+                  const entry = data[id];
+                  const div = document.createElement("div");
+                  div.className = "form-outer";
+                  div.innerHTML = `
+                  <form id="data-form" onsubmit="event.preventDefault();" autocomplete="off" >
+                    <div class="page slide-page">
+                      <div class="field">
+                        <div class="label">ID</div>
+                        <input type="text" id="after3_id" value="${
+                          entry.id
+                        }" readonly required />
+                      </div>
+                    <div class="field">
+                      <div class="label">Tipe</div>
+                      <select name="tipe" id="after3_tipekendaraan" required>
+                        <option value="Motor" ${
+                          entry.tipeKendaraan === "Motor" ? "selected" : ""
+                        }>Motor</option>
+                        <option value="Mobil" ${
+                          entry.tipeKendaraan === "Mobil" ? "selected" : ""
+                        }>Mobil</option>
+                        <option value="Taxi" ${
+                          entry.tipeKendaraan === "Taxi" ? "selected" : ""
+                        }>Taxi</option>
+                        <option value="Bus" ${
+                          entry.tipeKendaraan === "Bus" ? "selected" : ""
+                        }>Bus</option>
+                        <option value="Kereta Api" ${
+                          entry.tipeKendaraan === "Kereta Api" ? "selected" : ""
+                        }>Kereta Api</option>
+                        <option value="Kapal Laut" ${
+                          entry.tipeKendaraan === "Kapal Laut" ? "selected" : ""
+                        }>Kapal Laut</option>
+                        <option value="Pesawat Terbang" ${
+                          entry.tipeKendaraan === "Pesawat Terbang"
+                            ? "selected"
+                            : ""
+                        }>Pesawat Terbang</option>
+                      </select>
+                    </div>
+                    <div class="field">
+                      <div class="label">Jumlah Orang</div>
+                      <input type="number" id="after3_jmlhorang" value="${
+                        entry.jumlahOrang
+                      }" required />
+                    </div>
+                    <div class="field">
+                      <div class="label">Harga Keseluruhan</div>
+                      <div class="input-group">
+                        <select name="currency" id="currency" required>
+                          <option value="Rp" ${
+                            entry.currency === "Rp" ? "selected" : ""
+                          }>Rp</option>
+                          <option value="$" ${
+                            entry.currency === "$" ? "selected" : ""
+                          }>$</option>
+                        </select>
+                        <input type="number" id="harga-seluruhnya" class="after3_hargaseluruhnya" value="${
+                          entry.hargaSeluruhnya
+                        }" required />
+                      </div>
+                    </div>
+                    <div class="field">
+                      <div class="label">Harga Keseluruhan (Setelah Digabung)</div>
+                      <input type="text" id="harga-seluruhnya-text" class="after3_hargaseluruhnyatext" value="${
+                        entry.hargaSeluruhnyaText
+                      }" readonly />
+                    </div>
+                    <div class="field">
+                      <div class="label">Tanggal dan Jam Keberangkatan</div>
+                      <input type="date" id="tanggal-keberangkatan" class="after3_departdate" value="${
+                        entry.tanggalKeberangkatan
+                      }" required />
+                      <input type="time" id="jam-keberangkatan" class="after3_departtime" value="${
+                        entry.jamKeberangkatan
+                      }" required />
+                    </div>
+                    <div class="field">
+                      <div class="label">Daerah/Tempat Keberangkatan</div>
+                      <input type="text" id="after3_depart" value="${
+                        entry.tempatKeberangkatan
+                      }" required />
+                    </div>
+                    <div class="field">
+                      <div class="label">Tanggal dan Jam Sampai Tujuan</div>
+                      <input type="date" id="tanggal-tujuan" class="after3_arrivaldate" value="${
+                        entry.tanggalTujuan
+                      }" required />
+                      <input type="time" id="jam-tujuan" class="after3_arrivaltime" value="${
+                        entry.jamTujuan
+                      }" required />
+                    </div>
+                    <div class="field">
+                      <div class="label">Daerah/Tempat Tujuan</div>
+                      <input type="text" id="after3_arrival" value="${
+                        entry.tempatTujuan
+                      }" required />
+                    </div>
+                    <div class="description">
+                      <div class="label-description">Deskripsi</div>
+                      <textarea name="" id="after3_desc" class="text-description" required >${entry.description.replace(
+                        /\\n/g,
+                        "\n"
+                      )}</textarea>
+                    </div>
+                    <div class="radio-check-label">Pilih salah satu :</div>
+                    <div class="input-btn">
+                      <input type="radio" class="radio-btn" id="delay" name="planning" value="delay" ${
+                        entry.planStatus === "delay" ? "checked" : ""
+                      } />
+                      <label for="delay">Delay</label><br />
+                    </div>
+                    <div class="input-btn">
+                      <input type="radio" class="radio-btn" id="postponed" name="planning" value="postponed" ${
+                        entry.planStatus === "postponed" ? "checked" : ""
+                      } />
+                      <label for="postponed">Postponed</label><br />
+                    </div>
+                    <div class="input-btn">
+                      <input type="radio" class="radio-btn" id="ongoing" name="planning" value="ongoing" ${
+                        entry.planStatus === "ongoing" ? "checked" : ""
+                      } />
+                      <label for="ongoing">Ongoing</label>
+                    </div>
+                    <button class="button-submit" id="after3_update">Update</button>
+                    <button class="button-delete" id="after3_delete">Delete</button>
+                  `;
+                  container.appendChild(div);
+
+                  const forms = container.querySelectorAll("form");
+                  forms.forEach((form) => {
+                    const currencySelect = form.querySelector("#currency");
+                    const hargaSeluruhnyaInput =
+                      form.querySelector("#harga-seluruhnya");
+                    const hargaSeluruhnyaText = form.querySelector(
+                      "#harga-seluruhnya-text"
+                    );
+
+                    function updateHargaSeluruhnyaText() {
+                      const currency = currencySelect.value;
+                      const hargaSeluruhnya = hargaSeluruhnyaInput.value;
+                      hargaSeluruhnyaText.value = currency + hargaSeluruhnya;
+                    }
+
+                    updateHargaSeluruhnyaText();
+
+                    currencySelect.addEventListener(
+                      "change",
+                      updateHargaSeluruhnyaText
+                    );
+                    hargaSeluruhnyaInput.addEventListener(
+                      "input",
+                      updateHargaSeluruhnyaText
+                    );
+                  });
+                }
+              },
+              {
+                onlyOnce: true,
+              }
+            );
+          } else {
+            console.log("Belum Login!");
+            alert("Belum Login.");
+          }
+        });
+
+      // Update Button
+      document
+        .querySelector(".card-container")
+        .addEventListener("click", (e) => {
+          if (e.target && e.target.id === "after3_update") {
+            const form = e.target.closest("form");
+            const after3Id = form.querySelector("#after3_id").value;
+            const after3TipeKendaraan = form.querySelector(
+              "#after3_tipekendaraan"
+            ).value;
+            const after3JumlahOrang =
+              form.querySelector("#after3_jmlhorang").value;
+            const currency = form.querySelector("#currency").value;
+            const hargaSeluruhnya =
+              form.querySelector("#harga-seluruhnya").value;
+            const hargaSeluruhnyaText = form.querySelector(
+              "#harga-seluruhnya-text"
+            ).value;
+            const after3tanggalKeberangkatan =
+              form.querySelector(".after3_departdate").value;
+            const after3jamKeberangkatan =
+              form.querySelector(".after3_departtime").value;
+            const tmptKeberangkatan =
+              form.querySelector("#after3_depart").value;
+            const after3tanggalTujuan = form.querySelector(
+              ".after3_arrivaldate"
+            ).value;
+            const after3jamTujuan = form.querySelector(
+              ".after3_arrivaltime"
+            ).value;
+            const tmptTujuan = form.querySelector("#after3_arrival").value;
+            const after3Desc = form
+              .querySelector("#after3_desc")
+              .value.replace(/\r?\n/g, "\\n");
+            const kondisi = form.querySelector(
+              'input[name="planning"]:checked'
+            ).value;
+
+            const user = auth.currentUser;
+
+            if (user) {
+              const dbRef = ref(
+                db,
+                `users/${user.uid}/planningDB/after_3/${after3Id}`
+              );
+              const formData = {
+                id: after3Id,
+                tipeKendaraan: after3TipeKendaraan,
+                jumlahOrang: after3JumlahOrang,
+                currency: currency,
+                hargaSeluruhnya: hargaSeluruhnya,
+                hargaSeluruhnyaText: hargaSeluruhnyaText,
+                tanggalKeberangkatan: after3tanggalKeberangkatan,
+                jamKeberangkatan: after3jamKeberangkatan,
+                tempatKeberangkatan: tmptKeberangkatan,
+                tanggalTujuan: after3tanggalTujuan,
+                jamTujuan: after3jamTujuan,
+                tempatTujuan: tmptTujuan,
+                description: after3Desc,
+                planStatus: kondisi,
+              };
+
+              update(dbRef, formData)
+                .then(() => {
+                  console.log("Data sukses diupdate!");
+                  alert("Data Perencanaanmu Sudah Diupdate ke Database!");
+                  location.reload();
+                })
+                .catch((error) => {
+                  console.log("Data gagal diupdate!");
+                  alert(
+                    "Terjadi Kesalahan Pengupdatean Data Perencanaan: " +
+                      error.message
+                  );
+                });
+            } else {
+              console.log("Belum Login!");
+              alert("Belum Login.");
+            }
+          }
+        });
+
+      document
+        .querySelector(".card-container")
+        .addEventListener("click", (e) => {
+          if (e.target && e.target.id === "after3_delete") {
+            const form = e.target.closest("form");
+            const after3Id = form.querySelector("#after3_id").value;
+
+            const user = auth.currentUser;
+            if (user) {
+              const dbRef = ref(
+                db,
+                `users/${user.uid}/planningDB/after_3/${after3Id}`
+              );
+
+              if (
+                confirm(
+                  "Peringatan! Data dengan id " +
+                    after3Id +
+                    " akan dihapus. Yakin?!"
+                )
+              ) {
+                remove(dbRef)
+                  .then(() => {
+                    console.log("Data sukses dihapus!");
+                    alert("Data Perencanaanmu Sudah Dihapus dari Database!");
+                    location.reload();
+                  })
+                  .catch((error) => {
+                    console.log("Data gagal dihapus!");
+                    alert(
+                      "Terjadi Kesalahan Penghapusan Data Perencanaan: " +
+                        error.message
+                    );
+                  });
+              }
+            } else {
+              console.log("Belum Login!");
+              alert("Belum Login.");
+            }
+          }
+        });
+    </script>
+  </body>
+</html>

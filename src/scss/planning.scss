@@ -1,8 +1,8 @@
 .content-planning {
   padding: 0;
-  height: 425px;
+  display: grid;
+  grid-template-columns: auto 1fr;
 }
-
 .sidebar {
   margin: 0;
   padding: 0;

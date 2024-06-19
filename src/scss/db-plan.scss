@@ -1,0 +1,28 @@
+.database-content {
+  padding: 0 20px;
+  display: flex;
+  position: relative;
+  background-color: burlywood;
+}
+.database-container {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+.database-item {
+  padding: 15px;
+  width: 300px;
+  background-color: white;
+  border-radius: 20px;
+  text-align: center;
+  align-self: center;
+  transition: background-color 0.3s ease;
+  font-weight: bold;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+.database-item:hover {
+  background-color: rgb(219, 219, 219);
+}

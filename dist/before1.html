@@ -1,1 +1,145 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"/><title>Restaurant Apps</title><meta name="viewport" content="width=device-width,initial-scale=1"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/><link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Oswald:wght@200..700&display=swap" rel="stylesheet"/><script defer="defer" src="/bundle.js"></script></head><body><button onclick="location.href='#content-main'" class="skip-link">Menuju ke konten</button><header><div class="logo-container"><img src="/images/mainlogo.png" alt="Main Logo" class="logo" tabindex="0"/> <span class="logo-text" tabindex="0">TravelingSwift</span></div><div class="hamburger"><button class="hamburger-indicator" aria-label="Navigasi Menu" tabindex="0">☰</button></div><nav class="navigation"><a href="index.html" class="nav-link">Beranda</a> <a href="planning.html" class="nav-link">Perencanaan</a> <a href="recommendation.html" class="nav-link">Rekomendasi</a> <a href="gallery.html" class="nav-link">Galeri</a> <a href="aboutus.html" class="nav-link">Tentang</a></nav><div class="user-options"><a href="#" class="profile"><img src="/images/ProfileIcon.png" alt="Profile Logo" class="user-logo"/></a></div></header><main><div class="content-planning"><div class="sidebar"><a href="before.html" class="active-tab">Sebelum</a> <a href="current.html">Saat Ini</a> <a href="after.html">Sesudah</a></div><div class="card"></div></div></main><footer><div class="text-footer" tabindex="0"><p>Dari C624-PS046 dengan cinta &hearts;~</p></div></footer></body></html>
+<!doctype html><html lang="en"><head><meta charset="UTF-8"/><title>TravelingSwift</title><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="dicoding:email" content="aryagading2004@student.esaunggul.ac.id"/><meta name="dicoding:email" content="aryagading2004@student.esaunggul.ac.id"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/><link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Oswald:wght@200..700&display=swap" rel="stylesheet"/><script defer="defer" src="/bundle.js"></script></head><body><button onclick="location.href='#content-main'" class="skip-link">Menuju ke konten</button><header><div class="logo-container"><img src="/images/mainlogo.png" alt="Main Logo" class="logo" tabindex="0"/> <span class="logo-text" tabindex="0">TravelingSwift</span></div><div class="hamburger"><button class="hamburger-indicator" aria-label="Navigasi Menu" tabindex="0">☰</button></div><nav class="navigation"><a href="index.html" class="nav-link">Beranda</a> <a href="planning.html" class="nav-link">Perencanaan</a> <a href="recommendation.html" class="nav-link">Rekomendasi</a> <a href="gallery.html" class="nav-link">Galeri</a> <a href="aboutus.html" class="nav-link">Tentang</a></nav><div class="user-options"><a class="profile"><img src="/images/ProfileIcon.png" alt="Profile Logo" class="user-logo"/></a><div class="user-dropdown"></div></div></header><main><div class="content-planning"><div class="sidebar"><a href="before1.html" class="active-tab">Sebelum</a> <a href="current1.html">Saat Ini</a> <a href="after1.html">Sesudah</a> <a href="db-plan.html">Database</a></div><div class="card-container"><h2>Sebelum Perjalanan Wisata</h2><div class="progress-bar"><div class="step" id="active-step"><p>Makanan</p><div class="bullet" onclick="location.href='before1.html'">1</div><div class="check fas fa-check"></div></div><div class="step"><p>Kesehatan</p><div class="bullet" onclick="location.href='before2.html'">2</div><div class="check fas fa-check"></div></div><div class="step"><p>Transport</p><div class="bullet" onclick="location.href='before3.html'">3</div><div class="check fas fa-check"></div></div><div class="step"><p>Bebas</p><div class="bullet" onclick="location.href='before4.html'">4</div><div class="check fas fa-check"></div></div></div><div class="form-outer"><form id="data-form" onsubmit="event.preventDefault();" autocomplete="off"><div class="page slide-page"><div class="field"><div class="label">Tipe</div><select name="tipe" id="before1_tipe" required><option value="Makanan">Makanan</option><option value="Minuman">Minuman</option></select></div><div class="field"><div class="label">Nama</div><input id="before1_name" required/></div><div class="description"><div class="label-description">Deskripsi</div><textarea name="" id="before1_desc" class="text-description" required></textarea></div><div class="field"><div class="label">Harga per Item</div><div class="input-group"><select name="currency" id="currency"><option value="Rp">Rp</option><option value="$">$</option></select> <input type="number" id="harga-per-item" class="before1_hargaperitem" required/></div></div><div class="field"><div class="label">Quantity</div><input type="number" id="quantity" class="before1_quantity" required/></div><div class="field"><div class="label">Harga Total</div><input id="harga-total" class="before1_hargatotal" readonly="readonly" required/></div><div class="radio-check-label">Pilih salah satu :</div><div class="input-btn"><input type="radio" class="radio-btn" id="delay" name="planning" value="delay"/> <label for="delay">Delay</label><br/></div><div class="input-btn"><input type="radio" class="radio-btn" id="postponed" name="planning" value="postponed"/> <label for="postponed">Postponed</label><br/></div><div class="input-btn"><input type="radio" class="radio-btn" id="ongoing" name="planning" value="ongoing"/> <label for="ongoing">Ongoing</label></div><button class="button-submit" id="before1_submit">Submit</button></div></form></div></div></div></main><footer><div class="text-footer" tabindex="0"><p>Dari C624-PS046 dengan cinta &hearts;~</p></div></footer><script>document.addEventListener("DOMContentLoaded", (event) => {
+        const hargaPerItemInput = document.getElementById("harga-per-item");
+        const quantityInput = document.getElementById("quantity");
+        const hargaTotalInput = document.getElementById("harga-total");
+        const currencySelect = document.getElementById("currency");
+
+        function updateHargaTotal() {
+          const hargaPerItem = parseFloat(hargaPerItemInput.value) || 0;
+          const quantity = parseInt(quantityInput.value) || 0;
+          const currencySymbol =
+            currencySelect.options[currencySelect.selectedIndex].text;
+          const hargaTotal = hargaPerItem * quantity;
+          hargaTotalInput.value = currencySymbol + hargaTotal;
+        }
+
+        hargaPerItemInput.addEventListener("input", updateHargaTotal);
+        quantityInput.addEventListener("input", updateHargaTotal);
+        currencySelect.addEventListener("change", updateHargaTotal);
+      });</script><script type="module">import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+      import {
+        getAuth,
+        signOut,
+      } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+      import {
+        getDatabase,
+        set,
+        get,
+        ref,
+      } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyDYX8vwQvyV6w3qXGkH98rDVC6OtYGfKlA",
+        authDomain: "travelingswift-2d5c2.firebaseapp.com",
+        databaseURL: "https://travelingswift-2d5c2-default-rtdb.firebaseio.com",
+        projectId: "travelingswift-2d5c2",
+        storageBucket: "travelingswift-2d5c2.appspot.com",
+        messagingSenderId: "1085644116670",
+        appId: "1:1085644116670:web:f3d155410a101d4f4ec4ef",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+      const accountDetails = document.querySelector(".user-dropdown");
+
+      const db = getDatabase();
+
+      // Authentication Track
+      const setupUI = (user) => {
+        if (user) {
+          const userId = user.uid;
+          const userRef = ref(db, `users/${userId}/account_info`);
+
+          get(userRef).then((snapshot) => {
+            if (snapshot.exists()) {
+              const userName = snapshot.val().name;
+              const html = `
+              <span class="user_name">${userName}</span>
+              <span class="user_email">${user.email}</span>
+              <button id="logout-button" value="ok">Keluar</button>
+              `;
+              accountDetails.innerHTML = html;
+
+              let logoutButton = document.getElementById("logout-button");
+              logoutButton.addEventListener("click", (e) => {
+                e.preventDefault();
+                signOut(auth)
+                  .then(() => {
+                    alert("User sukses logout");
+                    location.href = "logscreen.html";
+                  })
+                  .catch((error) => {});
+              });
+            }
+          });
+        } else {
+        }
+      };
+
+      auth.onAuthStateChanged((user) => {
+        if (user) {
+          setupUI(user);
+        } else {
+          window.location = "logscreen.html";
+        }
+      });
+
+      function submitForm(event) {
+        event.preventDefault();
+
+        const before1Id = new Date().getTime();
+        const before1Tipe = document.getElementById("before1_tipe").value;
+        const before1Name = document.getElementById("before1_name").value;
+        const before1Desc = document
+          .getElementById("before1_desc")
+          .value.replace(/\r?\n/g, "\\n");
+        const currency = document.getElementById("currency").value;
+        const hargaPerItem = document.getElementById("harga-per-item").value;
+        const quantity = document.getElementById("quantity").value;
+        const hargaTotal = document.getElementById("harga-total").value;
+        const kondisi = document.querySelector(
+          'input[name="planning"]:checked'
+        ).value;
+
+        const user = auth.currentUser;
+
+        if (user) {
+          const dbRef = ref(
+            db,
+            `users/${user.uid}/planningDB/before_1/` + before1Id
+          );
+
+          const formData = {
+            id: before1Id,
+            tipe: before1Tipe,
+            name: before1Name,
+            description: before1Desc,
+            currency: currency,
+            pricePerItem: hargaPerItem,
+            quantity: quantity,
+            totalPrice: hargaTotal,
+            planStatus: kondisi,
+          };
+
+          set(dbRef, formData)
+            .then(() => {
+              console.log("Data sukses!");
+              alert("Data Perencanaanmu Sudah Masuk ke Database!");
+              location.reload();
+            })
+            .catch((error) => {
+              console.log("Data gagal!");
+              alert(
+                "Terjadi Kesalahan Pengiriman Data Perencanaan: " +
+                  error.message
+              );
+            });
+        } else {
+          console.log("Belum Login!");
+          alert("Belum Login.");
+        }
+      }
+
+      document
+        .getElementById("data-form")
+        .addEventListener("submit", submitForm);</script></body></html>
